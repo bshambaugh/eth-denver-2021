@@ -14,7 +14,7 @@ declare global {
   }
 }
 
-interface SecretNotes {
+interface BasicTranscript {
   notes: any[]
 }
 
@@ -45,7 +45,7 @@ const updateProfile = async () => {
 }
 
 const createNote = async () => {
-  const record = (await window.idx?.get('secretNotes')) as SecretNotes || { notes: [] }
+  const record = (await window.idx?.get('basicTranscript')) as BasicTranscript || { notes: [] }
   const recipient = (document.getElementById('recipient') as HTMLInputElement).value
   const note = (document.getElementById('note') as HTMLInputElement).value
   const noteData = { recipient, note }
@@ -53,7 +53,7 @@ const createNote = async () => {
   if (recipient) recipients.push(recipient)
   const encryptedNote = await window.did?.createDagJWE(noteData, recipients)
   record.notes.push(encryptedNote)
-  await window.idx?.set('secretNotes', record)
+  await window.idx?.set('basicTranscript', record)
 }
 
 const loadNotes = async () => {
@@ -64,7 +64,7 @@ const loadNotes = async () => {
   if (user && !user.startsWith('did')) {
     user = await ethAddressToDID(user)
   }
-  const record = (await window.idx?.get('secretNotes', user)) as SecretNotes
+  const record = (await window.idx?.get('basicTranscript', user)) as BasicTranscript
 
   record?.notes.map(async (encryptedNote, mapindex) => {
     try {
