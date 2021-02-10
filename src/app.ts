@@ -51,6 +51,7 @@ const createTranscript = async() => {
   const degreedescription = (document.getElementById('degreedescription') as HTMLInputElement).value
   const issuancedate = (document.getElementById('issuancedate') as HTMLInputElement).value
   const noteData = { recipient, degreetitle, degreedescription, issuancedate }
+  const recipients = [window.did?.id as string] // always make ourselves a recipient 
   if (recipient) recipients.push(recipient)
   const encryptedNote = await window.did?.createDagJWE(noteData, recipients)
   record.notes.push(encryptedNote)
