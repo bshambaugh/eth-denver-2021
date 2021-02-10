@@ -58,40 +58,48 @@ Open the `src/idx.ts` file and edit the aliases variable `secretNotes ` to the D
 
 ```json
 {
-  "$schema": "http://json-schema.org/draft-07/schema#",
-  "type": "object",
-  "title": "SecretNotes",
-  "properties": {
-    "notes": {
-      "type": "array",
-      "items": { "$ref": "#/definitions/NoteJWE" }
-    }
-  },
-  "additionalProperties": false,
-  "required": [ "notes" ],
-  "definitions": {
-    "NoteJWE": {
-      "type": "object",
-      "properties": {
-        "protected": { "type": "string" },
-        "iv": { "type": "string" },
-        "ciphertext": { "type": "string" },
-        "tag": { "type": "string" },
-        "aad": { "type": "string" },
-        "recipients": {
-          "type": "array",
+"$schema": "http://json-schema.org/draft-07/schema#",
+"title": "BasicTranscript",
+"type": "object",
+    "properties": {
+      "name": {
+      "type": "string",
+      "maxLength": 150
+     },
+    "description": {
+      "type": "string",
+      "maxLength": 420
+     },
+    "issuanceDate": {
+      "type": "string",
+      "format": "date",
+      "maxLength": 24
+     },
+    "items": {"$ref":"#/definitions/transcriptJWE" }
+},
+    "definitions": {
+      "transcriptJWE": {
+        "type": "object",
+        "properties": {
+          "protected": { "type": "string" },
+          "iv": { "type": "string" },
+          "ciphertext": { "type": "string" },
+          "tag": { "type": "string" },
+          "aad": { "type": "string" },
+          "recipients": {
+          "type": "object",
           "items": {
-            "type": "object",
-            "properties": {
-              "header": { "type": "object" },
-              "encrypted_key": { "type": "string" }
-            },
-            "required": [ "header", "encrypted_key" ]
-          }
-        }
-      },
-      "required": [ "protected", "iv", "ciphertext", "tag" ]
-    }
+           "type": "object",
+           "properties": {
+           "header": { "type": "object" },
+           "encrypted_key": { "type": "string" }
+         },
+        "required": [ "header", "encrypted_key" ]
+       }
+      }
+     },
+     "required": [ "protected", "iv", "ciphertext", "tag" ]
+   }
   }
 }
 ```
