@@ -145,10 +145,10 @@ document.getElementById('loadNotes')?.addEventListener('click', async () => {
   document.getElementById('loadloading')?.style?.display = 'none';
 })
 
-document.getElementById('createNote')?.addEventListener('click', async () => {
+document.getElementById('createTranscript')?.addEventListener('click', async () => {
   // @ts-ignore
   document.getElementById('createloading')?.style?.display = 'block';
-  await createNote()
+  await createTranscript()
   // @ts-ignore
   document.getElementById('createloading')?.style?.display = 'none';
 })
