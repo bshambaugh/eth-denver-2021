@@ -15,7 +15,7 @@ declare global {
 }
 
 interface BasicTranscript {
-  notes: any[]
+   notes : any[]
 }
 
 const ceramicPromise = createCeramic()
@@ -54,24 +54,11 @@ const createTranscript = async() => {
   const recipients = [window.did?.id as string] // always make ourselves a recipient 
   if (recipient) recipients.push(recipient)
   const encryptedNote = await window.did?.createDagJWE(noteData, recipients)
+  // record = encryptedNote
   record.notes.push(encryptedNote)
-  await window.idx?.set('basicTranscript', record)  
+  await window.idx?.set('basicTranscript', record) 
+  // await window.idx?.set('basicTranscript', encryptedNote) 
 }
-
-
-/**
-const createNote = async () => {
-  const record = (await window.idx?.get('basicTranscript')) as BasicTranscript || { notes: [] }
-  const recipient = (document.getElementById('recipient') as HTMLInputElement).value
-  const note = (document.getElementById('note') as HTMLInputElement).value
-  const noteData = { recipient, note }
-  const recipients = [window.did?.id as string] // always make ourselves a recipient
-  if (recipient) recipients.push(recipient)
-  const encryptedNote = await window.did?.createDagJWE(noteData, recipients)
-  record.notes.push(encryptedNote)
-  await window.idx?.set('basicTranscript', record)
-}
-*/
 
 const loadNotes = async () => {
   const noteContainer = document.getElementById('allNotes')
