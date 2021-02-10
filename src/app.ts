@@ -44,7 +44,6 @@ const updateProfile = async () => {
   await window.idx?.set('basicProfile', { name, description })
 }
 
-/**
 const createTranscript = async() => {
   const record = (await window.idx?.get('basicTranscript')) as BasicTranscript || { name : "", description : "" , issuanceDate : ""  } 
   const recipient = (document.getElementById('recipient') as HTMLInputElement).value
@@ -57,8 +56,9 @@ const createTranscript = async() => {
   record.notes.push(encryptedNote)
   await window.idx?.set('basicTranscript', record)  
 }
-*/
 
+
+/**
 const createNote = async () => {
   const record = (await window.idx?.get('basicTranscript')) as BasicTranscript || { notes: [] }
   const recipient = (document.getElementById('recipient') as HTMLInputElement).value
@@ -70,6 +70,7 @@ const createNote = async () => {
   record.notes.push(encryptedNote)
   await window.idx?.set('basicTranscript', record)
 }
+*/
 
 const loadNotes = async () => {
   const noteContainer = document.getElementById('allNotes')
