@@ -44,6 +44,21 @@ const updateProfile = async () => {
   await window.idx?.set('basicProfile', { name, description })
 }
 
+/**
+const createTranscript = async() => {
+  const record = (await window.idx?.get('basicTranscript')) as BasicTranscript || { name : "", description : "" , issuanceDate : ""  } 
+  const recipient = (document.getElementById('recipient') as HTMLInputElement).value
+  const degreetitle = (document.getElementById('degreetitle') as HTMLInputElement).value
+  const degreedescription = (document.getElementById('degreedescription') as HTMLInputElement).value
+  const issuancedate = (document.getElementById('issuancedate') as HTMLInputElement).value
+  const noteData = { recipient, degreetitle, degreedescription, issuancedate }
+  if (recipient) recipients.push(recipient)
+  const encryptedNote = await window.did?.createDagJWE(noteData, recipients)
+  record.notes.push(encryptedNote)
+  await window.idx?.set('basicTranscript', record)  
+}
+*/
+
 const createNote = async () => {
   const record = (await window.idx?.get('basicTranscript')) as BasicTranscript || { notes: [] }
   const recipient = (document.getElementById('recipient') as HTMLInputElement).value

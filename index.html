@@ -77,7 +77,7 @@
       <h3>View Transcripts</h3>
       <div id="viewNotes" style="margin-left: 50px; margin-right: auto; margin-bottom: 30px">
         <input type="text" id="user" name="user" size="35" placeholder="User (leave emtpy to load your trasncripts)" />
-        <button id="loadNotes" type="button" class="btn btn-primary">Load Transcripts</button><br />
+	 <button id="loadNotes" type="button" class="btn btn-primary">Load Transcripts</button><br />
         <div id="loadloading" class="spinner-grow text-primary" role="status" style="display: none">
           <span class="sr-only">Loading...</span>
         </div>
@@ -85,30 +85,36 @@
       </div>
       <h3>Add Transcripts:</h3>
       <div style="margin:20px 100px;"></div>
+      <div style="margin-left: 50px; margin-right: auto; margin-bottom: 30px">
+      <div>Recipient</div><input type="text" id="recipient" name="recipient" placeholder="Recipient" /><br />
+      </div>
       <h3>Degree Title</h3>
       <div style="margin-left: 50px; margin-right: auto; margin-bottom: 30px">
-	      <input type="text" id="recipient" name="recipient" size="35" placeholder="Degree Title" />
-        <div id="createloading" class="spinner-grow text-primary" role="status" style="display: none">
+          <input type="text" id="degreetitle" name="degreetitle" size="35" placeholder="Degree Title" />
+	  <div id="createloading" class="spinner-grow text-primary" role="status" style="display: none">
           <span class="sr-only">Loading...</span>
         </div>
-        <button id="createNote" type="button" class="btn btn-primary">Add Title</button>
+	<!--  <button id="createNote" type="button" class="btn btn-primary">Add Title</button> -->
       </div>
       <h3>Degree Description</h3>
       <div style="margin-left: 50px; margin-right: auto; margin-bottom: 30px">
-         <textarea id="note" class="form-control" name="note" placeholder="Degree Description"></textarea>
+         <textarea id="degreedescription" class="form-control" name="degreedescription" placeholder="Degree Description"></textarea>
         <div id="createloading" class="spinner-grow text-primary" role="status" style="display: none">
           <span class="sr-only">Loading...</span>
         </div>
-        <button id="createNote" type="button" class="btn btn-primary">Add Description</button>
+	<!-- <button id="createNote" type="button" class="btn btn-primary">Add Description</button> -->
       </div>
       <h3>Issuance Date</h3>
       <div style="margin-left: 50px; margin-right: auto; margin-bottom: 30px">
-              <input type="text" id="recipient" name="recipient" size="35" placeholder="Issuance Date" />
+        <input type="text" id="issuancedate" name="issuancedate" size="35" placeholder="Issuance Date" />
         <div id="createloading" class="spinner-grow text-primary" role="status" style="display: none">
           <span class="sr-only">Loading...</span>
         </div>
-        <button id="createNote" type="button" class="btn btn-primary">Add Date</button>
-      </div>      
+	<!-- <button id="createNote" type="button" class="btn btn-primary">Add Date</button> -->
+      </div>
+      <div style="margin-left: 50px; margin-right: auto; margin-bottom: 30px">
+      <button id="createNote" type="button" class="btn btn-primary">Add Date</button>
+      </div>
     </main>
   </body>
   <script type="text/javascript" src="dist/app.js"></script>
