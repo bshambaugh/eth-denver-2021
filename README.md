@@ -37,7 +37,7 @@ ceramic deamon
 Create a developer DID used to author the schema and definition:
 
 ```sh
-idx did:create --label=trascript
+idx did:create --label=transcript
 ```
 
 Publish the schema (can be found below):
@@ -58,24 +58,34 @@ Open the `src/idx.ts` file and edit the aliases variable `basicTranscript` to th
 
 ```json
 {
-"$schema": "http://json-schema.org/draft-07/schema#",
-"title": "basicTranscript",
-"type": "object",
-    "properties": {
-      "name": {
-      "type": "string",
-      "maxLength": 150
-     },
-    "description": {
-      "type": "string",
-      "maxLength": 420
-     },
-    "issuanceDate": {
-      "type": "string",
-      "format": "date",
-      "maxLength": 24
-     },
-    "items": {"$ref":"#/definitions/transcriptJWE" }
+"$id": "https://example.com/arrays.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "description": "A representation of a person, company, organization, or place",
+   "type" : "object",
+   "title" : "basicTranscript",
+   "properties" : {
+   "notes" : {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+                  "name": {
+         "type": "string",
+         "maxLength": 150
+         },
+        "description": {
+        "type": "string",
+        "maxLength": 420
+        },
+       "issuanceDate": {
+        "type": "string",
+        "format": "date",
+        "maxLength": 24
+        },
+        "items": {"$ref":"#/definitions/transcriptJWE" }
+      }
+    }   
+  }
 },
     "definitions": {
       "transcriptJWE": {
