@@ -8,7 +8,7 @@ declare global {
 }
 
 const aliases = {
-  basicTranscript: 'kjzl6cwe1jw14awezcmrejwbmpycpj8hy2ganffkevjb68bk8z93ccwqaratxra'
+  basicTranscript: 'kjzl6cwe1jw148hqh6f8t72a43xs1d3u54hk4xhpnp4co1g5hhxkhmi4i91c2ea'
 }
 
 export function createIDX(ceramic: CeramicApi): IDX {

@@ -45,7 +45,7 @@ const updateProfile = async () => {
 }
 
 const createTranscript = async() => {
-  const record = (await window.idx?.get('basicTranscript')) as BasicTranscript || { name : "", description : "" , issuanceDate : ""  } 
+  const record = (await window.idx?.get('basicTranscript')) as BasicTranscript || { notes : []  } 
   const recipient = (document.getElementById('recipient') as HTMLInputElement).value
   const degreetitle = (document.getElementById('degreetitle') as HTMLInputElement).value
   const degreedescription = (document.getElementById('degreedescription') as HTMLInputElement).value
