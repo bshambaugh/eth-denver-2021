@@ -69,22 +69,22 @@ Open the `src/idx.ts` file and edit the aliases variable `basicTranscript` to th
       "items": {
         "type": "object",
         "properties": {
-                  "name": {
-         "type": "string",
-         "maxLength": 150
-         },
-        "description": {
-        "type": "string",
-        "maxLength": 420
-        },
-       "issuanceDate": {
-        "type": "string",
-        "format": "date",
-        "maxLength": 24
-        },
-        "items": {"$ref":"#/definitions/transcriptJWE" }
-      }
-    }   
+           "name": {
+             "type": "string",
+             "maxLength": 150
+            },
+           "description": {
+             "type": "string",
+             "maxLength": 420
+           },
+           "issuanceDate": {
+             "type": "string",
+             "format": "date",
+              "maxLength": 24
+            },
+           "items": {"$ref":"#/definitions/transcriptJWE" }
+         }
+     }   
   }
 },
     "definitions": {
