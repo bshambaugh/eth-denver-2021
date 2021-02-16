@@ -59,6 +59,7 @@ const createTranscript = async() => {
   await window.idx?.set('basicTranscript', record)
 }
 
+
 const removeTranscript = async() => {
 
       const recipient = (document.getElementById('recipient') as HTMLInputElement).value
@@ -66,19 +67,24 @@ const removeTranscript = async() => {
       const degreedescription = (document.getElementById('degreedescription') as HTMLInputElement).value
       const issuancedate = (document.getElementById('issuancedate') as HTMLInputElement).value
 
-     const existing = await idx.get('basicTranscript') // load remote
+     const existing = (await window.idx?.get('basicTranscript')) as BasicTranscript || { notes: [] }  // load remote
      const notes = existing.notes ?? []
-     const resultFour = await Promise.all(notes.map(sweetItem => {return did.decryptDagJWE(sweetItem)}));
-     
-     for(let i = 0; i < resultFour.length; i++ ) {
-        if(resultFour[i].note && resultFour[i].recipient != undefined) {
-           if(resultFour[i].note[0] == degreetitle && resultFour[i].note[1] == degreedescription && resultFour[i].note[2] == issuancedate && resultFour[i].recipient == recipient) {
-              notes.splice(i,1);                            
+     const resultFour = await Promise.all(notes.map(sweetItem => {return window.did?.decryptDagJWE(sweetItem)}));
+
+     if(resultFour != undefined) {
+       for(let i = 0; i < resultFour.length; i++ ) {
+       if(resultFour[i].note != undefined  && resultFour[i].recipient != undefined) {
+            if(resultFour[i].note[0]  != undefined && resultFour[i].note[1] != undefined && resultFour[i].note[2] != undefined) {
+             if(resultFour[i].note[0]  == degreetitle && resultFour[i].note[1] == degreedescription && resultFour[i].note[2] == issuancedate && resultFour[i].recipient == recipient) {
+                notes.splice(i,1);                            
+	     }
 	   }
-        }
-     }
+          }
+       }
+     } 
     await window.idx?.set('basicTranscript', { notes })
 }     
+
 
 /**
      notes.shift() // mutate locally
@@ -173,3 +179,14 @@ document.getElementById('createTranscript')?.addEventListener('click', async () 
   // @ts-ignore
   document.getElementById('createloading')?.style?.display = 'none';
 })
+
+
+document.getElementById('removeTranscript')?.addEventListener('click', async () => {
+  // @ts-ignore
+  document.getElementById('createloading')?.style?.display = 'block';
+  await removeTranscript()
+  // @ts-ignore
+  document.getElementById('createloading')?.style?.display = 'none';
+  })
+
+
