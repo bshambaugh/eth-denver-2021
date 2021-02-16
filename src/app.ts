@@ -59,6 +59,40 @@ const createTranscript = async() => {
   await window.idx?.set('basicTranscript', record)
 }
 
+const removeTranscript = async() => {
+
+      const recipient = (document.getElementById('recipient') as HTMLInputElement).value
+      const degreetitle = (document.getElementById('degreetitle') as HTMLInputElement).value
+      const degreedescription = (document.getElementById('degreedescription') as HTMLInputElement).value
+      const issuancedate = (document.getElementById('issuancedate') as HTMLInputElement).value
+
+     const existing = await idx.get('basicTranscript') // load remote
+     const notes = existing.notes ?? []
+     const resultFour = await Promise.all(notes.map(sweetItem => {return did.decryptDagJWE(sweetItem)}));
+     
+     for(let i = 0; i < resultFour.length; i++ ) {
+        if(resultFour[i].note && resultFour[i].recipient != undefined) {
+           if(resultFour[i].note[0] == degreetitle && resultFour[i].note[1] == degreedescription && resultFour[i].note[2] == issuancedate && resultFour[i].recipient == recipient) {
+              notes.splice(i,1);                            
+	   }
+        }
+     }
+    await window.idx?.set('basicTranscript', { notes })
+}     
+
+/**
+     notes.shift() // mutate locally
+     await idx.set('basicTranscript',{notes}) // update remote with changes
+
+    const resultThree = notes.map(sweetItem => { return did.decryptDagJWE(sweetItem)})
+    console.log(resultThree);  /// 
+    const promiseA = did.decryptDagJWE(notes[0])
+    promiseA.then ((val) => console.log('asynchronous logging using val',val)
+
+    var x = await did.decryptDagJWE(notes[0])
+
+*/
+
 const loadNotes = async () => {
   const noteContainer = document.getElementById('allNotes')
   // @ts-ignore
@@ -78,6 +112,7 @@ const loadNotes = async () => {
         addNameToNote(recipient, 'name' + mapindex)
       }
       noteEntry += '<br /><b>Note:</b> ' + note + '</p><hr />'
+      console.log(note+mapindex);
       // @ts-ignore
       noteContainer?.innerHTML += noteEntry
     } catch (e) {}
